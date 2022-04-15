@@ -1,6 +1,6 @@
 const Header = () => {
   return (
-    <div className="Header">
+    <header className="Header">
       <div className="logo">
         <img src={`${process.env.PUBLIC_URL}/assets/logo.png`} />
       </div>
@@ -17,9 +17,10 @@ const Header = () => {
         </div>
       </div>
       <div className="search">
+        <input type="text" />
         <h4>검색하기</h4>
       </div>
-    </div>
+    </header>
   );
 };
 
