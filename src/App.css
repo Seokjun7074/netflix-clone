@@ -66,6 +66,6 @@ img {
 
 /* MovieList */
 .MovieList {
-  background-color: gray;
-  height: 100vh;
+  /* background-color: gray; */
+  height: 100%;
 }

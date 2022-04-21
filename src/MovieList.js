@@ -4,6 +4,7 @@ import Movie from "./components/Movie";
 
 const MovieList = () => {
   const [movie, setMovie] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const getMovies = async () => {
     const response = await fetch(
@@ -12,18 +13,33 @@ const MovieList = () => {
     );
     const jsonResponse = await response.json();
     setMovie(jsonResponse.data.movies);
+    setLoading(false);
     //   .then((json) => setMovie(json.boxOfficeResult.dailyBoxOfficeList));
   };
   useEffect(() => {
     getMovies();
-    // console.log("fetch finish");
   }, []);
   console.log("movie: ", movie);
 
   return (
     <div className="MovieList">
       <h2>리스트 나올 화면</h2>
-      <Movie />
+      <div>
+        {loading ? (
+          <h2>Loading...</h2>
+        ) : (
+          <div>
+            {movie.map((e) => (
+              <Movie
+                key={e.id}
+                id={e.id}
+                title={e.title}
+                cover_image={e.medium_cover_image}
+              />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
