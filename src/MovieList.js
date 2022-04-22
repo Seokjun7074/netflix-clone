@@ -1,5 +1,5 @@
 import { type } from "@testing-library/user-event/dist/type";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./App.css";
 import Movie from "./components/Movie";
 
@@ -7,6 +7,8 @@ const MovieList = () => {
   const [movie, setMovie] = useState([]);
   const [movieNumber, setMovieNumber] = useState(10);
   const [loading, setLoading] = useState(true);
+  const [curMargin, setCurMargin] = useState(0);
+  const slide = useRef(0);
 
   const getMovies = async () => {
     const response = await fetch(
@@ -26,7 +28,8 @@ const MovieList = () => {
   useEffect(() => {
     setMovieNumber(Object.keys(movie).length);
   }, [movie]);
-  console.log("movieNumber: ", movieNumber);
+  console.log(curMargin);
+
   return (
     <div className="MovieList">
       {/* <h2>리스트 나올 화면</h2> */}
@@ -34,7 +37,7 @@ const MovieList = () => {
         {loading ? (
           <h2>Loading...</h2>
         ) : (
-          <div className="MovieList">
+          <div className="slide" ref={slide}>
             <ul
               className="movie_slide"
               style={{ width: 200 * movieNumber + "px" }}
@@ -51,22 +54,52 @@ const MovieList = () => {
           </div>
         )}
       </div>
-      <span
-        className="prev"
-        onClick={() => {
-          console.log("<<");
-        }}
-      >
-        &lang;
-      </span>
-      <span
-        className="next"
-        onClick={() => {
-          console.log(">>");
-        }}
-      >
-        &rang;
-      </span>
+      <div className="slide_controller">
+        <span
+          className="prev"
+          onClick={() => {
+            if (curMargin === 0) {
+              return;
+            }
+            slide.current.style = `margin-left:${curMargin + 200}px`;
+            setCurMargin(curMargin + 200);
+          }}
+        >
+          &lang;
+        </span>
+        <span
+          className="next"
+          onClick={() => {
+            slide.current.style = `margin-left:${curMargin - 200}px`;
+            setCurMargin(curMargin - 200);
+          }}
+        >
+          &rang;
+        </span>
+      </div>
+
+      {/* <div className="left_slide_controller">
+        <span
+          className="prev"
+          onClick={() => {
+            slide.current.style = `margin-left:${curMargin + 200}px`;
+            setCurMargin(curMargin + 200);
+          }}
+        >
+          &lang;
+        </span>
+      </div>
+      <div className="right_slide_controller">
+        <span
+          className="next"
+          onClick={() => {
+            slide.current.style = `margin-left:${curMargin - 200}px`;
+            setCurMargin(curMargin - 200);
+          }}
+        >
+          &rang;
+        </span>
+      </div> */}
     </div>
   );
 };
