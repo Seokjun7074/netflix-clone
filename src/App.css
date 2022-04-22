@@ -1,6 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  box-sizing: border-box;
+}
 body {
   background-color: #141414;
-  box-sizing: border-box;
   margin: 0;
   color: #ffffff;
 }
@@ -66,6 +71,23 @@ img {
 
 /* MovieList */
 .MovieList {
-  /* background-color: gray; */
+  background-color: gray;
+  /* margin: 0 10px; */
+  position: relative;
+  overflow: hidden;
   height: 100%;
+}
+.movie_slide {
+  /* width: 4000px; */
+  list-style-type: none;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  /* justify-content: space-around; */
+}
+
+/* Movie */
+.Movie {
+  width: 200px;
+  padding-right: 10px;
+  float: left;
 }
