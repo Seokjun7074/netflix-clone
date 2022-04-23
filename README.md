@@ -25,4 +25,32 @@
 
 ---
 
-\*\*
+# 만들면서 삽질한 내용
+
+영화의 수, 이미지의 너비를 가지고 슬라이드 이미지의 총 길이를 구하는데서 막힘
+=> useState의 비동기성 때문인 것 같음
+
+```
+const IMAGE_WIDTH = 200;
+const [movie, setMovie] = useState([]);
+const [movieNumber, setMovieNumber] = useState(10);
+const getMovies = async () => {
+    const response = await fetch(
+        //패치
+    );
+    const jsonResponse = await response.json();
+    setMovie(jsonResponse.data.movies);
+    setLoading(false);
+  };
+useEffect(() => {
+    setMovieNumber(Object.keys(movie).length);
+  }, [movie]);
+
+const [style, setStyle] = useState({
+    width: `4000px`,
+    transform: `translateX(${curMargin}px)`,
+    transition: `all 0.2s ease-in-out`,
+  });
+
+
+```

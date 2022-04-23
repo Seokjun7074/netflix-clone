@@ -22,11 +22,8 @@ body {
   padding-right: 30px;
 
   width: 100%;
-  /* min-width: 1080px; */
 
   height: 70px;
-  /* position: fixed; */
-  /* background-color: gray; */
 
   display: flex;
   align-items: center;
@@ -34,7 +31,6 @@ body {
 .logo {
   width: 130px;
   display: flex;
-  /* background-color: aqua; */
 }
 img {
   max-width: 100%;
@@ -47,14 +43,12 @@ img {
   width: 70%;
   display: flex;
   justify-content: left;
-  /* background-color: aqua; */
 }
 .menu h2 {
   margin-left: 60px;
   cursor: pointer;
 }
 .search {
-  /* background-color: aqua; */
   display: flex;
   align-items: center;
   margin-left: auto;
@@ -71,32 +65,40 @@ img {
 
 /* MovieList */
 .slide {
-  /* background-color: gray; */
   position: relative;
   overflow: hidden;
   height: 100%;
-  /* onClick 이벤트를 통해 margin - */
+  width: 1800px;
+  margin: 0 auto;
 }
 
 .slide_controller {
-  background-color: gray;
+  position: relative;
+  bottom: 200px;
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
 }
-span {
+.next,
+.prev {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.3);
   margin: 20px;
+  text-align: center;
   font-size: 28px;
   font-weight: 700;
+  cursor: pointer;
 }
 .movie_slide {
-  /* width: 영화 개수에 따라 변함 */
   list-style-type: none;
 }
 
 /* Movie */
 .Movie {
-  width: 200px;
+  /* 너비는 컴포넌트에서 정의 */
   padding-right: 10px;
   float: left;
 }

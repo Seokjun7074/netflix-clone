@@ -4,11 +4,18 @@ import "./App.css";
 import Movie from "./components/Movie";
 
 const MovieList = () => {
+  const IMAGE_WIDTH = 200;
   const [movie, setMovie] = useState([]);
   const [movieNumber, setMovieNumber] = useState(10);
   const [loading, setLoading] = useState(true);
   const [curMargin, setCurMargin] = useState(0);
   const slide = useRef(0);
+
+  const [style, setStyle] = useState({
+    width: `4000px`,
+    transform: `translateX(${curMargin}px)`,
+    transition: `all 0.2s ease-in-out`,
+  });
 
   const getMovies = async () => {
     const response = await fetch(
@@ -19,6 +26,7 @@ const MovieList = () => {
     setMovie(jsonResponse.data.movies);
 
     setLoading(false);
+
     //   .then((json) => setMovie(json.boxOfficeResult.dailyBoxOfficeList));
   };
   // console.log(Object.keys(movie).length);
@@ -28,78 +36,53 @@ const MovieList = () => {
   useEffect(() => {
     setMovieNumber(Object.keys(movie).length);
   }, [movie]);
-  console.log(curMargin);
+
+  const nextSlide = () => {
+    setStyle({
+      width: `4000px`,
+      transform: `translateX(${curMargin - IMAGE_WIDTH}px)`,
+      transition: `all 0.2s ease-in-out`,
+    });
+    setCurMargin(curMargin - IMAGE_WIDTH);
+  };
+  const prevSlide = () => {
+    if (curMargin + IMAGE_WIDTH > 0) return;
+    setStyle({
+      width: `4000px`,
+      transform: `translateX(${curMargin + IMAGE_WIDTH}px)`,
+      transition: `all 0.2s ease-in-out`,
+    });
+    setCurMargin(curMargin + IMAGE_WIDTH);
+  };
 
   return (
     <div className="MovieList">
       {/* <h2>리스트 나올 화면</h2> */}
-      <div>
-        {loading ? (
-          <h2>Loading...</h2>
-        ) : (
-          <div className="slide" ref={slide}>
-            <ul
-              className="movie_slide"
-              style={{ width: 200 * movieNumber + "px" }}
-            >
-              {movie.map((e) => (
-                <Movie
-                  key={e.id}
-                  id={e.id}
-                  title={e.title}
-                  cover_image={e.medium_cover_image}
-                />
-              ))}
-            </ul>
+      {loading ? (
+        <h2>Loading...</h2>
+      ) : (
+        <div className="slide">
+          <ul ref={slide} className="movie_slide" style={style}>
+            {movie.map((e) => (
+              <Movie
+                key={e.id}
+                id={e.id}
+                title={e.title}
+                coverImage={e.medium_cover_image}
+                imageWidth={IMAGE_WIDTH}
+              />
+            ))}
+          </ul>
+          <div className="slide_controller">
+            <div className="prev" onClick={prevSlide}>
+              &lang;
+            </div>
+            <div className="next" onClick={nextSlide}>
+              &rang;
+            </div>
           </div>
-        )}
-      </div>
-      <div className="slide_controller">
-        <span
-          className="prev"
-          onClick={() => {
-            if (curMargin === 0) {
-              return;
-            }
-            slide.current.style = `margin-left:${curMargin + 200}px`;
-            setCurMargin(curMargin + 200);
-          }}
-        >
-          &lang;
-        </span>
-        <span
-          className="next"
-          onClick={() => {
-            slide.current.style = `margin-left:${curMargin - 200}px`;
-            setCurMargin(curMargin - 200);
-          }}
-        >
-          &rang;
-        </span>
-      </div>
-
-      {/* <div className="left_slide_controller">
-        <span
-          className="prev"
-          onClick={() => {
-            slide.current.style = `margin-left:${curMargin + 200}px`;
-            setCurMargin(curMargin + 200);
-          }}
-        >
-          &lang;
-        </span>
-      </div>
-      <div className="right_slide_controller">
-        <span
-          className="next"
-          onClick={() => {
-            slide.current.style = `margin-left:${curMargin - 200}px`;
-            setCurMargin(curMargin - 200);
-          }}
-        >
-          &rang;
-        </span>
-      </div> */}
+        </div>
+      )}
     </div>
   );
 };
