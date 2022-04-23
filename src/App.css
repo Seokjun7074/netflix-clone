@@ -74,7 +74,7 @@ img {
 
 .slide_controller {
   position: relative;
-  bottom: 200px;
+  /* bottom: 200px; */
   display: flex;
   justify-content: space-between;
   padding: 0 20px;

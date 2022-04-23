@@ -15,7 +15,7 @@
 
 ---
 
-### 3. 공통 컴포넌트 제작(동일한 디자인으로..??)
+### 3. 공통 컴포넌트 제작
 
 - 모달창
 - 영화 리스트 목록
@@ -23,12 +23,11 @@
 
 ---
 
----
-
 # 만들면서 삽질한 내용
 
-영화의 수, 이미지의 너비를 가지고 슬라이드 이미지의 총 길이를 구하는데서 막힘
-=> useState의 비동기성 때문인 것 같음
+### 1. 영화의 수, 이미지의 너비를 가지고 슬라이드 이미지의 총 길이를 구하는데서 막힘
+
+=>useState의 비동기성 때문인 것 같음
 
 ```
 const IMAGE_WIDTH = 200;
@@ -36,7 +35,7 @@ const [movie, setMovie] = useState([]);
 const [movieNumber, setMovieNumber] = useState(10);
 const getMovies = async () => {
     const response = await fetch(
-        //패치
+        //영화 오픈 api
     );
     const jsonResponse = await response.json();
     setMovie(jsonResponse.data.movies);
@@ -54,3 +53,7 @@ const [style, setStyle] = useState({
 
 
 ```
+
+슬라이드 부분을 컴포넌트로 분리시키고 props를 통해 해결!! + 제발 props 받을 때 중괄호 까먹지말자....
+
+---
