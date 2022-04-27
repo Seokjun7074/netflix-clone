@@ -32,7 +32,11 @@ const MovieList = () => {
       {loading ? (
         <h2>Loading...</h2>
       ) : (
-        <Slide movie={movie} containerLength={movieNumber} />
+        <div>
+          <Slide movie={movie} containerLength={movieNumber} />
+          <Slide movie={movie} containerLength={movieNumber} />
+          <Slide movie={movie} containerLength={movieNumber} />
+        </div>
       )}
     </div>
   );
