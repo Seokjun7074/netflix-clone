@@ -64,17 +64,18 @@ img {
 }
 
 /* MovieList */
-.slide {
+.slide_view {
   position: relative;
   height: 100%;
   margin: 10px auto;
   /* background-color: aqua; */
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 .movie_slide_list {
-  width: 1800px;
+  /* width: 1800px; 인라인으로 설정*/
   overflow: hidden;
+  /* background-color: aqua; */
 }
 
 .next,
@@ -87,6 +88,7 @@ img {
   text-align: center;
   vertical-align: middle;
   margin: auto 0;
+  /* background-color: goldenrod; */
 }
 .movie_slide {
   list-style-type: none;
@@ -97,4 +99,12 @@ img {
   /* 너비는 컴포넌트에서 정의 */
   padding-right: 10px;
   float: left;
+}
+
+.title_box {
+  padding: 10px;
+}
+.title {
+  font-size: 20px;
+  font-weight: 800;
 }
