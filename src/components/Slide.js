@@ -5,7 +5,7 @@ import Movie from "./Movie";
 const Slide = ({ movie, containerLength, title }) => {
   const SLIDE_BAR_WIDTH = 1800;
   const IMG_NUM = 10;
-  const IMAGE_WIDTH = SLIDE_BAR_WIDTH / IMG_NUM;
+  const IMAGE_WIDTH = SLIDE_BAR_WIDTH / IMG_NUM; // 180
   const [curPosition, setCurPosition] = useState(0);
   const slide = useRef(0);
   const slideWidth = IMAGE_WIDTH * containerLength;
@@ -14,10 +14,16 @@ const Slide = ({ movie, containerLength, title }) => {
     transform: `translateX(${curPosition}px)`,
     transition: `all 0.5s ease-in-out`,
   });
+  // console.log(movie.length);
   // console.log(slideWidth); //4000
-  // console.log(curPosition);
+  console.log(curPosition);
   const nextSlide = () => {
-    if (curPosition - IMAGE_WIDTH < -IMG_NUM * IMAGE_WIDTH) return null;
+    // if (curPosition - IMAGE_WIDTH /*180*/ < -IMG_NUM * IMAGE_WIDTH) return null;
+    if (
+      curPosition - IMAGE_WIDTH /*-180*/ < -IMG_NUM * IMAGE_WIDTH /*-1800*/ ||
+      movie.length < 10
+    )
+      return null;
     setStyle({
       width: `${slideWidth}px`,
       transform: `translateX(${curPosition - IMAGE_WIDTH * IMG_NUM}px)`,
@@ -25,6 +31,7 @@ const Slide = ({ movie, containerLength, title }) => {
     });
     setCurPosition(curPosition - IMAGE_WIDTH * IMG_NUM);
   };
+
   const prevSlide = () => {
     if (curPosition + IMAGE_WIDTH > 0) return null;
     setStyle({

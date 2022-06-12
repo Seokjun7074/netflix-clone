@@ -14,7 +14,6 @@ const MovieList = () => {
     const jsonResponse = await response.json();
     setMovie(jsonResponse.data.movies);
     setLoading(false);
-    // console.log("fetch 끝");
   };
   useEffect(() => {
     getMovies();
