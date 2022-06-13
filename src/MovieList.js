@@ -2,9 +2,9 @@ import { type } from "@testing-library/user-event/dist/type";
 import { useEffect, useState, useRef } from "react";
 import "./App.css";
 import Slide from "./components/Slide";
+import Modal from "./components/Modal";
 
-const MovieList = () => {
-  const IMAGE_WIDTH = 200;
+const MovieList = ({ setModal }) => {
   const [movie, setMovie] = useState([]);
   const [movieNumber, setMovieNumber] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -14,6 +14,7 @@ const MovieList = () => {
     const jsonResponse = await response.json();
     setMovie(jsonResponse.data.movies);
     setLoading(false);
+    // setModal(true);
   };
   useEffect(() => {
     getMovies();
@@ -35,16 +36,23 @@ const MovieList = () => {
         <h2>Loading...</h2>
       ) : (
         <div>
-          <Slide movie={movie} containerLength={movieNumber} title={"전체"} />
+          <Slide
+            movie={movie}
+            containerLength={movieNumber}
+            title={"전체"}
+            setModal={setModal}
+          />
           <Slide
             movie={filterGenre("Drama")}
             containerLength={movieNumber}
             title={"Drama"}
+            setModal={setModal}
           />
           <Slide
             movie={filterGenre("Action")}
             containerLength={movieNumber}
             title={"Action"}
+            setModal={setModal}
           />
         </div>
       )}

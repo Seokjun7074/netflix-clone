@@ -2,10 +2,11 @@ import { useEffect, useState, useRef } from "react";
 import "../App.css";
 import Movie from "./Movie";
 
-const Slide = ({ movie, containerLength, title }) => {
+const Slide = ({ movie, containerLength, title, setModal }) => {
   const SLIDE_BAR_WIDTH = 1800;
   const IMG_NUM = 10;
   const IMAGE_WIDTH = SLIDE_BAR_WIDTH / IMG_NUM; // 180
+
   const [curPosition, setCurPosition] = useState(0);
   const slide = useRef(0);
   const slideWidth = IMAGE_WIDTH * containerLength;
@@ -16,9 +17,8 @@ const Slide = ({ movie, containerLength, title }) => {
   });
   // console.log(movie.length);
   // console.log(slideWidth); //4000
-  console.log(curPosition);
+  // console.log(curPosition);
   const nextSlide = () => {
-    // if (curPosition - IMAGE_WIDTH /*180*/ < -IMG_NUM * IMAGE_WIDTH) return null;
     if (
       curPosition - IMAGE_WIDTH /*-180*/ < -IMG_NUM * IMAGE_WIDTH /*-1800*/ ||
       movie.length < 10
@@ -42,8 +42,6 @@ const Slide = ({ movie, containerLength, title }) => {
     setCurPosition(curPosition + IMAGE_WIDTH * IMG_NUM);
   };
 
-  // console.log(arr);
-
   return (
     <div>
       <div className="title_box">
@@ -65,6 +63,7 @@ const Slide = ({ movie, containerLength, title }) => {
                 title={e.title}
                 coverImage={e.medium_cover_image}
                 imageWidth={IMAGE_WIDTH}
+                setModal={setModal}
               />
             ))}
           </div>
