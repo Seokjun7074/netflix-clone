@@ -56,13 +56,14 @@ const Slide = ({ movie, containerLength, title, setModal }) => {
           style={{ width: `${SLIDE_BAR_WIDTH}px` }}
         >
           <div ref={slide} className="movie_slide" style={style}>
-            {movie.map((e) => (
+            {movie.map((movie) => (
               <Movie
-                key={e.id}
-                id={e.id}
-                title={e.title}
-                coverImage={e.medium_cover_image}
+                key={movie.id}
+                id={movie.id}
+                title={movie.title}
+                coverImage={movie.medium_cover_image}
                 imageWidth={IMAGE_WIDTH}
+                movie={movie}
                 setModal={setModal}
               />
             ))}

@@ -1,16 +1,16 @@
 import "../App.css";
 
-const Modal = ({ setModal }) => {
+const Modal = ({ setModalpage, modalInfo }) => {
   return (
     <div className="Modal">
       <div
         className="modal_background"
         onClick={() => {
-          setModal(false);
+          setModalpage(false);
         }}
       ></div>
       <div className="modal_content">
-        <h1>modal</h1>
+        <h1>{modalInfo.title}</h1>
         <p>title</p>
       </div>
     </div>

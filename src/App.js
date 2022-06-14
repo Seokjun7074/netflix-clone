@@ -6,12 +6,20 @@ import MovieList from "./MovieList";
 import { useState } from "react";
 
 function App() {
-  const [modal, setModal] = useState(false);
-  console.log(modal);
+  const [modalpage, setModalpage] = useState(false);
+  const [modalInfo, setModalInfo] = useState();
+  console.log(modalInfo);
+
+  const setModal = (isOpen, movieDetail) => {
+    setModalpage(isOpen);
+    setModalInfo(movieDetail);
+  };
 
   return (
     <div className="App">
-      {modal ? <Modal setModal={setModal} /> : null}
+      {modalpage ? (
+        <Modal setModalpage={setModalpage} modalInfo={modalInfo} />
+      ) : null}
       <Header />
       <MovieList setModal={setModal} />
     </div>

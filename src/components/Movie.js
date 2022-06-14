@@ -1,14 +1,14 @@
 import "../App.css";
 import { useEffect, useState } from "react";
 
-const Movie = ({ id, title, coverImage, imageWidth, setModal }) => {
+const Movie = ({ id, title, coverImage, imageWidth, movie, setModal }) => {
   return (
     <div
       className="Movie"
       style={{ width: `${imageWidth}px` }}
       onClick={() => {
-        setModal(true);
-        console.log(title);
+        setModal(true, movie);
+        // console.log(typeof movie);
       }}
     >
       <img src={coverImage} />
