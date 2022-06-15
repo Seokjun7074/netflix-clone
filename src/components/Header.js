@@ -4,7 +4,10 @@ const Header = () => {
   return (
     <header className="Header">
       <div className="logo">
-        <img src={`${process.env.PUBLIC_URL}/assets/logo.png`} />
+        <img
+          className="logo_image"
+          src={`${process.env.PUBLIC_URL}/assets/logo.png`}
+        />
       </div>
       <div className="menu">
         {/* 버튼 */}
@@ -20,7 +23,9 @@ const Header = () => {
       </div>
       <div className="search">
         <input type="text" />
-        <h4>검색하기</h4>
+        <div className="serach_text">
+          <h6>검색</h6>
+        </div>
       </div>
     </header>
   );

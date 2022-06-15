@@ -11,7 +11,7 @@ const Movie = ({ id, title, coverImage, imageWidth, movie, setModal }) => {
         // console.log(typeof movie);
       }}
     >
-      <img src={coverImage} />
+      <img className="cover_image" src={coverImage} />
     </div>
   );
 };
