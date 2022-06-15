@@ -3,6 +3,7 @@ import "../App.css";
 import Movie from "./Movie";
 
 const Slide = ({ movie, containerLength, title, setModal }) => {
+  // let width = 0;
   const SLIDE_BAR_WIDTH = 1800;
   const IMG_NUM = 10;
   const IMAGE_WIDTH = SLIDE_BAR_WIDTH / IMG_NUM; // 180
@@ -18,6 +19,12 @@ const Slide = ({ movie, containerLength, title, setModal }) => {
   // console.log(movie.length);
   // console.log(slideWidth); //4000
   // console.log(curPosition);
+
+  // useEffect(() => {
+  //   width = slide.current.offsetWidth;
+  //   console.log(width);
+  // }, []);
+
   const nextSlide = () => {
     if (
       curPosition - IMAGE_WIDTH /*-180*/ < -IMG_NUM * IMAGE_WIDTH /*-1800*/ ||
@@ -43,11 +50,11 @@ const Slide = ({ movie, containerLength, title, setModal }) => {
   };
 
   return (
-    <div>
+    <div className="Slide">
       <div className="title_box">
         <span className="title">{title}</span>
       </div>
-      <div className="slide_view">
+      <div ref={slide} className="slide_view">
         <div className="prev" onClick={prevSlide}>
           &lang;
         </div>
@@ -55,7 +62,7 @@ const Slide = ({ movie, containerLength, title, setModal }) => {
           className="movie_slide_list"
           style={{ width: `${SLIDE_BAR_WIDTH}px` }}
         >
-          <div ref={slide} className="movie_slide" style={style}>
+          <div className="movie_slide" style={style}>
             {movie.map((movie) => (
               <Movie
                 key={movie.id}

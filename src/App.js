@@ -8,7 +8,7 @@ import { useState } from "react";
 function App() {
   const [modalpage, setModalpage] = useState(false);
   const [modalInfo, setModalInfo] = useState();
-  console.log(modalInfo);
+  // console.log(modalInfo);
 
   const setModal = (isOpen, movieDetail) => {
     setModalpage(isOpen);

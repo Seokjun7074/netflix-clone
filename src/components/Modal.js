@@ -10,8 +10,9 @@ const Modal = ({ setModalpage, modalInfo }) => {
         }}
       ></div>
       <div className="modal_content">
+        {/* <img className="backgound_image" src={modalInfo.background_image}></img> */}
         <h1>{modalInfo.title}</h1>
-        <p>title</p>
+        <p>{modalInfo.description_full}</p>
       </div>
     </div>
   );
