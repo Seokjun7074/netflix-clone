@@ -25,38 +25,6 @@
 
 # 만들면서 삽질한 내용
 
-### 1. 영화의 수, 이미지의 너비를 가지고 슬라이드 이미지의 총 길이를 구하는데서 막힘
-
-=>useState의 비동기성 때문인 것 같음
-
-```
-const IMAGE_WIDTH = 200;
-const [movie, setMovie] = useState([]);
-const [movieNumber, setMovieNumber] = useState(10);
-const getMovies = async () => {
-    const response = await fetch(
-        //영화 오픈 api
-    );
-    const jsonResponse = await response.json();
-    setMovie(jsonResponse.data.movies);
-    setLoading(false);
-  };
-useEffect(() => {
-    setMovieNumber(Object.keys(movie).length);
-  }, [movie]);
-
-const [style, setStyle] = useState({
-    width: `4000px`,
-    transform: `translateX(${curMargin}px)`,
-    transition: `all 0.2s ease-in-out`,
-  });
-
-
-```
-
-슬라이드 부분을 컴포넌트로 분리시키고 props를 통해 해결!! + 제발 props 받을 때 중괄호 좀 까먹지말자....
-
----
 
 ### 1. 영화의 수, 이미지의 너비를 가지고 슬라이드 이미지의 총 길이를 구하는데서 막힘
 
@@ -66,5 +34,10 @@ width: 100%이용해서 처리를 하면 좋을것같으나 useRef를 통해 뷰
 
 
 <22.10 추가>
+
+
 https://github.com/yo-seobara/client/blob/master/src/components/global/slider/index.js
-이거만들면서 다시 해결홰봤당
+이거만들면서 다시 해결홰봤다
+
+
+useRef를 통해 엘레먼트조작하는게 포인트였다
